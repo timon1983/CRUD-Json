@@ -1,4 +1,4 @@
-package repository.json;
+package repository.json.io.write;
 
 import Model.User;
 import com.google.gson.Gson;

@@ -1,4 +1,4 @@
-package repository.json;
+package repository.json.io.write;
 
 import java.io.File;
 import java.util.List;

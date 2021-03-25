@@ -2,6 +2,10 @@ package repository.json;
 
 import Model.Region;
 import repository.RegionRepository;
+import repository.json.io.read.FileReaderRegion;
+import repository.json.io.write.FileWriterRegion;
+import repository.json.io.read.Reader;
+import repository.json.io.write.Writer;
 
 import java.io.File;
 import java.util.List;

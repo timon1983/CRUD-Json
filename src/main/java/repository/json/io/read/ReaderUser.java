@@ -1,4 +1,4 @@
-package repository.json;
+package repository.json.io.read;
 
 import Model.User;
 

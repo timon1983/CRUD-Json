@@ -2,9 +2,12 @@ package repository.json;
 
 import Model.Post;
 import repository.PostRepository;
+import repository.json.io.read.FileReaderPost;
+import repository.json.io.write.FileWriterPost;
+import repository.json.io.read.Reader;
+import repository.json.io.write.Writer;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 

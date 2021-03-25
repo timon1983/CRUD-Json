@@ -1,6 +1,6 @@
-package repository.json;
+package repository.json.io.write;
 
-import Model.Post;
+import Model.Region;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
@@ -11,21 +11,19 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
-public class FileWriterPost implements WriterPost{
+public class FileWriterRegion implements WriterRegion{
 
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     @Override
-    public void write(List<Post> list, File file) {
+    public void write(List<Region> list, File file) {
 
-        List<Post> postUpdate = list;
+        List<Region> regionUpdate = list;
         JsonArray jsonArrayWrite = new JsonArray();
-        for(int i = 0; i < postUpdate.size(); i++){
+        for(int i = 0; i < regionUpdate.size(); i++){
             JsonObject jsonObject = new JsonObject();
-            jsonObject.addProperty("id", postUpdate.get(i).getId());
-            jsonObject.addProperty("content", postUpdate.get(i).getContent());
-            jsonObject.addProperty("created", postUpdate.get(i).getCreated());
-            jsonObject.addProperty("updated", postUpdate.get(i).getUpdated());
+            jsonObject.addProperty("id", regionUpdate.get(i).getId());
+            jsonObject.addProperty("name", regionUpdate.get(i).getName());
             jsonArrayWrite.add(jsonObject);
         }
         try(FileWriter fileWriter = new FileWriter(file)){

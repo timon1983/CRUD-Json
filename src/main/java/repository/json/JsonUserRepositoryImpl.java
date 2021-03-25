@@ -3,6 +3,10 @@ package repository.json;
 import Model.User;
 import repository.GenericReposiroty;
 import repository.UserRepository;
+import repository.json.io.read.FileReaderUser;
+import repository.json.io.write.FileWriterUser;
+import repository.json.io.read.Reader;
+import repository.json.io.write.Writer;
 
 import java.io.File;
 import java.util.*;

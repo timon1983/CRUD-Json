@@ -1,30 +1,26 @@
-package repository.json;
+package repository.json.io.read;
 
-import Model.Post;
+import Model.Region;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.*;
 
-public class FileReaderPost implements ReaderPost{
-
-    Gson gson = new Gson();
+public class FileReaderRegion implements Reader {
 
     @Override
-    public List<Post> read(File file) {
-
-        List<Post> posts = new ArrayList<>();
+    public List read(File file) {
+        List<Region> regions = new ArrayList<>();
+        Gson gson = new Gson();
         try(BufferedReader br = new BufferedReader(new FileReader(file))){
-            JsonArray jsonArrayRead = gson.fromJson(br, JsonArray.class);
-
-                for (int i = 0; i < jsonArrayRead.size(); i++) {
-                    Post postFromJson = gson.fromJson(jsonArrayRead.get(i), Post.class);
-                    posts.add(postFromJson);
-                }
+            regions = gson.fromJson(br, JsonArray.class).stream().map(n -> {
+                return gson.fromJson(n , Region.class);
+            }).collect(Collectors.toList());
         } catch (FileNotFoundException e){
-            File fileJson = new File("posts.json");
+            File fileJson = new File("regions.json");
             try {
                 fileJson.createNewFile();
             } catch (IOException ioException) {
@@ -33,6 +29,8 @@ public class FileReaderPost implements ReaderPost{
         } catch(IOException e) {
             System.out.println("Произошла ошибка ввода-вывода");
         }
-        return posts;
+        return regions;
     }
 }
+
+
