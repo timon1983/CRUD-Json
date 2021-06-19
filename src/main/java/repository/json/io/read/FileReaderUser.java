@@ -2,12 +2,10 @@ package repository.json.io.read;
 
 import Model.User;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-
+import com.google.gson.reflect.TypeToken;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.*;
 
 public class FileReaderUser implements ReaderUser {
 
@@ -16,9 +14,7 @@ public class FileReaderUser implements ReaderUser {
         List<User> users = new ArrayList<>();
         Gson gson = new Gson();
         try(BufferedReader br = new BufferedReader(new FileReader(file))){
-            users = gson.fromJson(br, JsonArray.class).stream().map(n -> {
-                return gson.fromJson(n , User.class);
-            }).collect(Collectors.toList());
+            users = gson.fromJson(br, new TypeToken<List<User>>(){}.getType());
         }catch (FileNotFoundException e){
                     File fileJson = new File("users.json");
                     try {

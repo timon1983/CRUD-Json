@@ -21,10 +21,11 @@ public class JsonPostRepositoryImpl implements PostRepository {
     @Override
     public Post getByld(Long id) {
         List<Post> posts = reader.read(file);
-
-        for(Post post: posts){
-            if(post.getId() == id){
-                return post;
+        if(posts != null) {
+            for (Post post : posts) {
+                if (post.getId() == id) {
+                    return post;
+                }
             }
         }
         return null;

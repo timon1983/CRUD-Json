@@ -25,10 +25,11 @@ public class JsonUserRepositoryImpl implements UserRepository {
     public User getByld(Long id) {
 
         List<User> users = reader.read(file);
-
-        for(User user: users){
-            if(user.getId() == id){
-                return user;
+        if(users != null){
+            for(User user: users) {
+                if (user.getId() == id) {
+                    return user;
+                }
             }
         }
         return null;

@@ -20,10 +20,11 @@ public class JsonRegionRepositoryImpl implements RegionRepository {
     @Override
     public Region getByld(Long id) {
         List<Region> regions = reader.read(file);
-
-        for(Region region: regions){
-            if(region.getId() == id){
-                return region;
+        if(regions != null) {
+            for (Region region : regions) {
+                if (region.getId() == id) {
+                    return region;
+                }
             }
         }
         return null;

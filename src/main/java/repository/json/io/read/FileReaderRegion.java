@@ -2,12 +2,10 @@ package repository.json.io.read;
 
 import Model.Region;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-
+import com.google.gson.reflect.TypeToken;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.*;
 
 public class FileReaderRegion implements Reader {
 
@@ -16,9 +14,7 @@ public class FileReaderRegion implements Reader {
         List<Region> regions = new ArrayList<>();
         Gson gson = new Gson();
         try(BufferedReader br = new BufferedReader(new FileReader(file))){
-            regions = gson.fromJson(br, JsonArray.class).stream().map(n -> {
-                return gson.fromJson(n , Region.class);
-            }).collect(Collectors.toList());
+            regions = gson.fromJson(br, new TypeToken<List<Region>>() {}.getType());
         } catch (FileNotFoundException e){
             File fileJson = new File("regions.json");
             try {
